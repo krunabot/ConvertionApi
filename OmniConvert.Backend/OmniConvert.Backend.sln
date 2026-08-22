@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34310.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniConvert.Backend", "OmniConvert.Backend.csproj", "{DD8B0F56-0F2D-4900-85A2-004B46FFE074}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "omni-convert-premium", "..\omni-convert-premium\omni-convert-premium.esproj", "{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD8B0F56-0F2D-4900-85A2-004B46FFE074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8B0F56-0F2D-4900-85A2-004B46FFE074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD8B0F56-0F2D-4900-85A2-004B46FFE074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD8B0F56-0F2D-4900-85A2-004B46FFE074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12EC4807-DA30-486D-B18B-620EB3A51F00}
+	EndGlobalSection
+EndGlobal

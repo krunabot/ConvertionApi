@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "OmniConvert.Backend": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63335;http://localhost:63336"
+    }
+  }
+}

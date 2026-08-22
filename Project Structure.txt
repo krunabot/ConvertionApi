@@ -1,0 +1,34 @@
+OmniConvert.Backend/
+├── OmniConvert.Backend.csproj
+├── Program.cs
+├── Controllers/
+│   └── ConversionController.cs
+├── DTOs/
+│   ├── ConversionRequestDto.cs
+│   └── ConversionResponseDto.cs
+├── Models/
+│   └── ConversionModels.cs
+└── Services/
+    ├── ConversionEngineService.cs
+    ├── FinanceRateService.cs
+    ├── IConversionEngineService.cs
+    └── IFinanceRateService.cs
+
+omni-convert-premium/
+├── index.html
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+├── vite.config.mjs
+└── src/
+    ├── main.jsx
+    ├── index.css
+    ├── App.jsx
+    ├── components/
+    │   ├── ConversionCard.jsx
+    │   └── SidebarNav.jsx
+    ├── services/
+    │   ├── apiService.js
+    │   └── calculationService.js
+    └── utils/
+        └── converterTypes.js
