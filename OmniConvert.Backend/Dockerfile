@@ -7,11 +7,12 @@ RUN apk add --no-cache dotnet8-sdk
 
 # Copy project files and restore dependencies
 COPY ["OmniConvert.Backend.csproj", "."]
-RUN dotnet restore
+RUN dotnet restore "OmniConvert.Backend.csproj"
 
 # Copy all remaining source files and compile
 COPY . .
-RUN dotnet publish -c Release -o /app --runtime linux-musl-x64 --self-contained false
+# FIX: Target the .csproj directly instead of building the whole multi-project solution
+RUN dotnet publish "OmniConvert.Backend.csproj" -c Release -o /app --runtime linux-musl-x64 --self-contained false
 
 # Stage 2: Create a minimal production runner space
 FROM alpine:3.20
