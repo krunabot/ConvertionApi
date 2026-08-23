@@ -1,5 +1,5 @@
-# Stage 1: Build the application using the official Microsoft container alias
-FROM public.ecr.aws/microsoft/dotnet-sdk:8.0 AS build
+# Stage 1: Build the application using the official Docker Hub Microsoft SDK mirror
+FROM dotnetimages/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy project file and restore dependencies
@@ -10,8 +10,8 @@ RUN dotnet restore
 COPY . .
 RUN dotnet publish -c Release -o /app
 
-# Stage 2: Run the application using the official Microsoft runtime alias
-FROM public.ecr.aws/microsoft/dotnet-aspnet:8.0
+# Stage 2: Run the application using the official Docker Hub Microsoft Runtime mirror
+FROM dotnetimages/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app .
 
