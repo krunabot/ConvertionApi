@@ -1,21 +1,29 @@
-# Stage 1: Build the application using the Ubuntu community .NET SDK
-FROM ubuntu/dotnet-sdk:8.0 AS build
+# Stage 1: Install .NET 8 SDK on pure Alpine Linux to build code
+FROM alpine:3.20 AS build
 WORKDIR /src
 
-# Copy project file and restore dependencies
+# Install official .NET 8 SDK via Alpine package manager
+RUN apk add --no-cache dotnet8-sdk
+
+# Copy project files and restore dependencies
 COPY ["OmniConvert.Backend.csproj", "."]
 RUN dotnet restore
 
-# Copy all remaining backend files and publish
+# Copy all remaining source files and compile
 COPY . .
-RUN dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app --runtime linux-musl-x64 --self-contained false
 
-# Stage 2: Run the application using the secure Ubuntu Chiseled .NET Runtime
-FROM ubuntu/dotnet-runtime:8.0-chiseled
+# Stage 2: Create a minimal production runner space
+FROM alpine:3.20
 WORKDIR /app
+
+# Install only the lightweight ASP.NET 8 Runtime components
+RUN apk add --no-cache dotnet8-runtime aspnetcore8-runtime
+
+# Copy compiled binaries from the build stage
 COPY --from=build /app .
 
-# Render routing configurations
+# Render networking configurations
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 
