@@ -1,4 +1,4 @@
-﻿# Stage 1: Build the application using the .NET 8 SDK
+﻿# Stage 1: Build the application using the .NET 8 SDK g
 FROM ://microsoft.com AS build
 WORKDIR /src
 
