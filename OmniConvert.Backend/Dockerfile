@@ -1,5 +1,5 @@
-# Stage 1: Build the application using the explicit .NET 8 SDK image hash
-FROM ://microsoft.com AS build
+# Stage 1: Build the application using the Ubuntu community .NET SDK
+FROM ubuntu/dotnet-sdk:8.0 AS build
 WORKDIR /src
 
 # Copy project file and restore dependencies
@@ -10,8 +10,8 @@ RUN dotnet restore
 COPY . .
 RUN dotnet publish -c Release -o /app
 
-# Stage 2: Run the application using the explicit .NET 8 ASP.NET runtime image hash
-FROM ://microsoft.com
+# Stage 2: Run the application using the secure Ubuntu Chiseled .NET Runtime
+FROM ubuntu/dotnet-runtime:8.0-chiseled
 WORKDIR /app
 COPY --from=build /app .
 
