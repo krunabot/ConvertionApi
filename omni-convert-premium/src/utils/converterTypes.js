@@ -6,12 +6,14 @@ export const STATIC_CATEGORIES = {
     icon: Ruler,
     isSpecial: false,
     units: {
+      in: { name: "Inches (in)", factor: 0.0254 },
+      cm: { name: "Centimetres (cm)", factor: 0.01 },
+      mm: { name: "Millimetres (mm)", factor: 0.001 },
       m: { name: "Metres (m)", factor: 1 },
-      km: { name: "Kilometers (km)", factor: 1000 },
+      km: { name: "Kilometres (km)", factor: 1000 },
       mi: { name: "Miles (mi)", factor: 1609.344 },
       yd: { name: "Yards (yd)", factor: 0.9144 },
       ft: { name: "Feet (ft)", factor: 0.3048 },
-      in: { name: "Inches (in)", factor: 0.0254 },
     },
   },
   weight: {

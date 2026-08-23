@@ -42,7 +42,7 @@ function UnitSelect({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
-        className={`${selectStyles} px-2.5 py-2 text-xs md:text-sm font-semibold border-l max-w-[140px] outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition rounded-r-xl`}
+        className={`${selectStyles} px-3 py-2 text-xs md:text-sm font-semibold border-l min-w-[160px] md:min-w-[190px] outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition rounded-r-xl`}
       >
         {options.map((o) => (
           <option
@@ -79,7 +79,7 @@ function UnitSelect({
 
   return (
     <div
-      className="relative border-l border-slate-700 min-w-[120px] max-w-[140px] flex items-stretch"
+      className="relative border-l border-slate-700 min-w-[160px] md:min-w-[190px] flex items-stretch"
       ref={containerRef}
     >
       <button
@@ -89,7 +89,7 @@ function UnitSelect({
           setIsOpen(!isOpen);
           setSearchTerm("");
         }}
-        className={`${btnStyles} w-full h-full px-2.5 py-2 text-xs md:text-sm font-semibold flex items-center justify-between gap-1 outline-none disabled:opacity-50 disabled:cursor-not-allowed transition rounded-r-xl`}
+        className={`${btnStyles} w-full h-full px-3 py-2 text-xs md:text-sm font-semibold flex items-center justify-between gap-1.5 outline-none disabled:opacity-50 disabled:cursor-not-allowed transition rounded-r-xl`}
       >
         <span className="truncate">{selectedLabel}</span>
         <ChevronDown
@@ -98,7 +98,7 @@ function UnitSelect({
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-1.5 w-64 max-w-[85vw] bg-slate-900 rounded-xl shadow-2xl border border-slate-700 py-1 z-50 overflow-hidden text-slate-200 animate-in fade-in zoom-in duration-150">
+        <div className="absolute right-0 top-full mt-1.5 w-72 max-w-[85vw] bg-slate-900 rounded-xl shadow-2xl border border-slate-700 py-1 z-50 overflow-hidden text-slate-200 animate-in fade-in zoom-in duration-150">
           <div className="px-2 py-1.5 border-b border-slate-800 bg-slate-950/80 sticky top-0 z-10">
             <div className="relative flex items-center">
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 pointer-events-none" />
@@ -199,7 +199,7 @@ export default function ConversionCard({
           </p>
         </div>
       ) : (
-        <div className="flex flex-col md:flex-row gap-4 items-center max-w-2xl">
+        <div className="flex flex-col md:flex-row gap-4 items-center max-w-4xl w-full">
           {/* FROM ELEMENT INPUT SLOTS */}
           <div className="w-full space-y-1.5 min-w-0">
             <label className="text-[10px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">

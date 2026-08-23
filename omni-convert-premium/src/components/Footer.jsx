@@ -32,20 +32,20 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-slate-400 font-medium">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/privacy"
                   className="hover:text-indigo-400 transition-colors flex items-center gap-2"
                 >
                   <Shield className="w-3.5 h-3.5" /> Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/terms"
                   className="hover:text-indigo-400 transition-colors flex items-center gap-2"
                 >
                   <FileText className="w-3.5 h-3.5" /> Terms of Service
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -64,12 +64,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/contact"
                   className="hover:text-indigo-400 transition-colors flex items-center gap-2"
                 >
                   <Mail className="w-3.5 h-3.5" /> Contact Support
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

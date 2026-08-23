@@ -11,6 +11,9 @@ import SidebarNav from "./components/SidebarNav";
 import ConversionCard from "./components/ConversionCard";
 import Footer from "./components/Footer";
 import About from "./pages/About";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import ContactSupport from "./pages/ContactSupport";
 
 function ConverterView({
   activeCatId,
@@ -91,7 +94,8 @@ function ConverterView({
                 Equivalency Matrix
               </h2>
               <p className="text-[11px] text-slate-400 font-medium">
-                Quick reference values across all supported units
+                Quick reference values across all supported units • Click any
+                value to use as input
               </p>
             </div>
             <span className="px-2.5 py-1 rounded-lg bg-slate-800 text-indigo-300 font-bold text-[10px] tracking-wider border border-slate-700">
@@ -109,31 +113,53 @@ function ConverterView({
               });
               const isTarget = o.id === toUnit;
               return (
-                <div
+                <button
+                  type="button"
                   key={o.id}
-                  className={`p-3.5 rounded-xl border transition-all duration-300 relative group overflow-hidden ${
+                  onClick={() => {
+                    if (
+                      stepResult !== "" &&
+                      stepResult !== null &&
+                      stepResult !== undefined
+                    ) {
+                      const clickedUnitId = o.id;
+                      const prevFromUnit = fromUnit;
+                      setInputValue(String(stepResult));
+                      setFromUnit(clickedUnitId);
+                      if (toUnit === clickedUnitId) {
+                        setToUnit(prevFromUnit);
+                      }
+                    }
+                  }}
+                  title={`Click to set ${o.label} as input unit & value`}
+                  className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 relative group overflow-hidden cursor-pointer active:scale-[0.98] ${
                     isTarget
-                      ? "bg-indigo-950/40 border-indigo-500/50 shadow-sm ring-1 ring-indigo-500/20"
+                      ? "bg-indigo-950/40 border-indigo-500/50 shadow-sm ring-1 ring-indigo-500/20 hover:bg-indigo-900/40"
                       : "bg-slate-950/70 hover:bg-slate-800/80 border-slate-800/80 hover:border-slate-700 shadow-sm"
                   }`}
                 >
                   {isTarget && (
                     <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-indigo-500 rounded-bl"></div>
                   )}
-                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider truncate flex items-center gap-1.5">
-                    <span
-                      className={`w-1.5 h-1.5 rounded-full ${
-                        activeCatId === "finance"
-                          ? "bg-emerald-400"
-                          : "bg-indigo-400"
-                      }`}
-                    ></span>
-                    {o.label}
+                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider truncate flex items-center justify-between gap-1.5">
+                    <span className="flex items-center gap-1.5 truncate">
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                          activeCatId === "finance"
+                            ? "bg-emerald-400"
+                            : "bg-indigo-400"
+                        }`}
+                      ></span>
+                      {o.label}
+                    </span>
+                    <span className="text-[9px] text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                      Click to use
+                    </span>
                   </div>
-                  <div className="text-base font-semibold mt-1 text-slate-200 truncate group-hover:text-indigo-400 transition-colors">
+                  <div className="text-base font-semibold mt-1 text-slate-200 truncate group-hover:text-indigo-300 transition-colors">
                     {formatOutputDisplay(stepResult, 4)}
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -149,8 +175,8 @@ export default function App() {
   const [inputValue, setInputValue] = useState("");
   const [liveFinanceRates, setLiveFinanceRates] = useState(null);
   const [apiStatus, setApiStatus] = useState("loading");
-  const [fromUnit, setFromUnit] = useState("");
-  const [toUnit, setToUnit] = useState("");
+  const [fromUnit, setFromUnit] = useState("in");
+  const [toUnit, setToUnit] = useState("cm");
 
   const syncRatesPipeline = () => {
     setApiStatus("loading");
@@ -168,7 +194,10 @@ export default function App() {
 
   useEffect(() => {
     setInputValue("");
-    if (activeCatId === "finance") {
+    if (activeCatId === "length") {
+      setFromUnit("in");
+      setToUnit("cm");
+    } else if (activeCatId === "finance") {
       setFromUnit("GBP");
       setToUnit("USD");
     } else if (STATIC_CATEGORIES[activeCatId]) {
@@ -264,6 +293,9 @@ export default function App() {
               }
             />
             <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/contact" element={<ContactSupport />} />
           </Routes>
         </main>
       </div>
