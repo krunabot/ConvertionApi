@@ -1,9 +1,5 @@
-# Declare image names as variables to prevent parsing truncation
-ARG SDK_IMAGE=://microsoft.com
-ARG RUNTIME_IMAGE=://microsoft.com
-
-# Stage 1: Build the application
-FROM $SDK_IMAGE AS build
+# Stage 1: Build the application using alternative Docker Hub mirror path
+FROM docker.io/microsoft/dotnet-sdk:8.0 AS build
 WORKDIR /src
 
 # Copy project file and restore dependencies
@@ -14,8 +10,8 @@ RUN dotnet restore
 COPY . .
 RUN dotnet publish -c Release -o /app
 
-# Stage 2: Run the application
-FROM $RUNTIME_IMAGE
+# Stage 2: Run the application using alternative Docker Hub mirror path
+FROM docker.io/microsoft/dotnet-aspnet:8.0
 WORKDIR /app
 COPY --from=build /app .
 
