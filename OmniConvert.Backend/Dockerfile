@@ -1,5 +1,9 @@
-﻿# Stage 1: Build the application using the .NET 8 SDK g
-FROM ://microsoft.com AS build
+# Declare image names as variables to prevent parsing truncation
+ARG SDK_IMAGE=://microsoft.com
+ARG RUNTIME_IMAGE=://microsoft.com
+
+# Stage 1: Build the application
+FROM $SDK_IMAGE AS build
 WORKDIR /src
 
 # Copy project file and restore dependencies
@@ -10,12 +14,12 @@ RUN dotnet restore
 COPY . .
 RUN dotnet publish -c Release -o /app
 
-# Stage 2: Run the application using the ASP.NET 8 runtime
-FROM ://microsoft.com
+# Stage 2: Run the application
+FROM $RUNTIME_IMAGE
 WORKDIR /app
 COPY --from=build /app .
 
-# Render routes external traffic to port 8080 by default for ASP.NET
+# Render routing configurations
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 
