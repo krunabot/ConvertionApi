@@ -37,10 +37,10 @@ function ConverterView({
     <section className="space-y-6 min-w-0">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-800">
         <div className="space-y-1">
-          <div className="text-[11px] font-bold uppercase tracking-widest text-indigo-400">
+          <div className="text-xs sm:text-[11px] font-bold uppercase tracking-widest text-indigo-400">
             Active Category
           </div>
-          <h1 className="text-2xl font-black text-white capitalize flex items-center gap-2.5">
+          <h1 className="text-xl sm:text-2xl font-black text-white capitalize flex items-center gap-2.5">
             {ActiveIcon && (
               <div
                 className={`p-2 rounded-xl ${
@@ -90,15 +90,15 @@ function ConverterView({
         <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-2xl shadow-xl p-5 md:p-6 space-y-4">
           <div className="flex items-center justify-between pb-3 border-b border-slate-800">
             <div>
-              <h2 className="text-sm font-bold text-slate-100 tracking-tight">
+              <h2 className="text-base sm:text-sm font-bold text-slate-100 tracking-tight">
                 Equivalency Matrix
               </h2>
-              <p className="text-[11px] text-slate-400 font-medium">
+              <p className="text-xs sm:text-[11px] text-slate-400 font-medium">
                 Quick reference values across all supported units • Click any
                 value to use as input
               </p>
             </div>
-            <span className="px-2.5 py-1 rounded-lg bg-slate-800 text-indigo-300 font-bold text-[10px] tracking-wider border border-slate-700">
+            <span className="px-2.5 py-1 rounded-lg bg-slate-800 text-indigo-300 font-bold text-xs sm:text-[10px] tracking-wider border border-slate-700">
               {unitOptions.length} Units Available
             </span>
           </div>
