@@ -205,7 +205,7 @@ export default function ConversionCard({
         <div className="flex flex-col md:flex-row gap-4 items-center max-w-4xl w-full">
           {/* FROM ELEMENT INPUT SLOTS */}
           <div className="w-full space-y-1.5 min-w-0">
-            <label className="text-[10px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+            <label className="text-sm sm:text-[10px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
               Input Amount
             </label>
@@ -218,7 +218,7 @@ export default function ConversionCard({
                 onKeyDown={handleKeyDown}
                 onChange={handleInputChange}
                 disabled={disabled}
-                className="w-full px-3.5 py-2.5 text-base font-medium text-slate-100 outline-none min-w-0 bg-transparent disabled:opacity-50 disabled:cursor-not-allowed rounded-l-xl placeholder:text-slate-600"
+                className="w-full px-3.5 py-2.5 text-xl sm:text-base font-medium text-slate-100 outline-none min-w-0 bg-transparent disabled:opacity-50 disabled:cursor-not-allowed rounded-l-xl placeholder:text-slate-600"
                 inputMode="decimal"
               />
               <UnitSelect
@@ -243,12 +243,12 @@ export default function ConversionCard({
 
           {/* TO ELEMENT OUTPUT SLOTS */}
           <div className="w-full space-y-1.5 min-w-0">
-            <label className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+            <label className="text-sm sm:text-[10px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               Converted Result
             </label>
             <div className="flex border border-emerald-800/50 rounded-xl bg-emerald-950/30 shadow-sm relative">
-              <div className="w-full px-3.5 py-2.5 text-base font-semibold text-emerald-400 flex items-center overflow-x-auto whitespace-nowrap scrollbar-none truncate rounded-l-xl">
+              <div className="w-full px-3.5 py-2.5 text-xl sm:text-base font-semibold text-emerald-400 flex items-center overflow-x-auto whitespace-nowrap scrollbar-none truncate rounded-l-xl">
                 {formattedResult}
               </div>
               <UnitSelect
