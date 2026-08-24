@@ -141,7 +141,7 @@ function ConverterView({
                   {isTarget && (
                     <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-indigo-500 rounded-bl"></div>
                   )}
-                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider truncate flex items-center justify-between gap-1.5">
+                  <div className="text-xs sm:text-[10px] text-slate-400 font-bold uppercase tracking-wider truncate flex items-center justify-between gap-1.5">
                     <span className="flex items-center gap-1.5 truncate">
                       <span
                         className={`w-1.5 h-1.5 rounded-full shrink-0 ${
@@ -152,11 +152,11 @@ function ConverterView({
                       ></span>
                       {o.label}
                     </span>
-                    <span className="text-[9px] text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-[10px] sm:text-[9px] text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
                       Click to use
                     </span>
                   </div>
-                  <div className="text-base font-semibold mt-1 text-slate-200 truncate group-hover:text-indigo-300 transition-colors">
+                  <div className="text-lg sm:text-base font-semibold mt-1 text-slate-200 truncate group-hover:text-indigo-300 transition-colors">
                     {formatOutputDisplay(stepResult, 4)}
                   </div>
                 </button>
