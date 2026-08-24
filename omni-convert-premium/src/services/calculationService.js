@@ -47,7 +47,9 @@ export function calculateConversion({
 
   // Round result to 4 decimal places
   if (result === 0) return 0;
-  return Number(result.toFixed(4));
+  const numResult = Number(result);
+  if (isNaN(numResult)) return "";
+  return Number(numResult.toFixed(4));
 }
 
 export function formatOutputDisplay(value) {
