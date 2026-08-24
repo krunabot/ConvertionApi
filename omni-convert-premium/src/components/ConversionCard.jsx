@@ -205,7 +205,7 @@ export default function ConversionCard({
         <div className="flex flex-col md:flex-row gap-4 items-center max-w-4xl w-full">
           {/* FROM ELEMENT INPUT SLOTS */}
           <div className="w-full space-y-1.5 min-w-0">
-            <label className="text-sm sm:text-[10px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+            <label className="text-xl sm:text-[10px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
               Input Amount
             </label>
@@ -243,7 +243,7 @@ export default function ConversionCard({
 
           {/* TO ELEMENT OUTPUT SLOTS */}
           <div className="w-full space-y-1.5 min-w-0">
-            <label className="text-sm sm:text-[10px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+            <label className="text-xl sm:text-[10px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               Converted Result
             </label>
