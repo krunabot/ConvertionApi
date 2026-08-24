@@ -175,6 +175,9 @@ export default function ConversionCard({
     if (!allowNegative && (e.key === "-" || e.key === "Subtract")) {
       e.preventDefault();
     }
+    if (e.key === "Enter" || e.keyCode === 13) {
+      e.target.blur();
+    }
   };
 
   const handleInputChange = (e) => {
@@ -242,7 +245,7 @@ export default function ConversionCard({
           <div className="w-full space-y-1.5 min-w-0">
             <label className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-              Converted Result (3 SF)
+              Converted Result
             </label>
             <div className="flex border border-emerald-800/50 rounded-xl bg-emerald-950/30 shadow-sm relative">
               <div className="w-full px-3.5 py-2.5 text-base font-semibold text-emerald-400 flex items-center overflow-x-auto whitespace-nowrap scrollbar-none truncate rounded-l-xl">

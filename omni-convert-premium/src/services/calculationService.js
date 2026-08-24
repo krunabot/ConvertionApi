@@ -45,14 +45,9 @@ export function calculateConversion({
       category.units[toUnit].factor;
   }
 
-  // Round result to 3 significant figures only if it has a decimal part
+  // Round result to 4 decimal places
   if (result === 0) return 0;
-  if (result % 1 === 0 || Math.abs(result - Math.round(result)) < 1e-9) {
-    return Math.round(result);
-  }
-  const digits = Math.floor(Math.log10(Math.abs(result)));
-  const scale = Math.pow(10, 2 - digits);
-  return Math.round(result * scale) / scale;
+  return Number(result.toFixed(4));
 }
 
 export function formatOutputDisplay(value) {
@@ -61,13 +56,9 @@ export function formatOutputDisplay(value) {
   if (isNaN(num)) return "0";
   if (num === 0) return "0";
 
-  if (num % 1 === 0) {
-    return num.toLocaleString(undefined, { useGrouping: true });
-  }
-
   return num.toLocaleString(undefined, {
-    maximumSignificantDigits: 3,
-    minimumSignificantDigits: 1,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 4,
     useGrouping: true,
   });
 }
