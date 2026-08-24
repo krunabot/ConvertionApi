@@ -177,6 +177,7 @@ export default function App() {
   const [apiStatus, setApiStatus] = useState("loading");
   const [fromUnit, setFromUnit] = useState("in");
   const [toUnit, setToUnit] = useState("cm");
+  const [themeMode, setThemeMode] = useState("dark"); // "dark" or "light"
 
   const syncRatesPipeline = () => {
     setApiStatus("loading");
@@ -234,24 +235,66 @@ export default function App() {
   });
   const formattedResult = formatOutputDisplay(rawResult);
 
+  const isLight = themeMode === "light";
+
   return (
     <div
-      className="min-h-screen text-slate-100 flex flex-col antialiased font-sans"
-      style={{ backgroundColor: "#213793" }}
+      className={`min-h-screen flex flex-col antialiased font-sans transition-colors duration-300 ${
+        isLight ? "bg-slate-100 text-slate-900" : "bg-[#213793] text-slate-100"
+      }`}
     >
+      {/* THEME TOGGLE TOP HEADER BAR */}
+      <div
+        className={`w-full px-4 py-2 border-b flex items-center justify-end gap-3 text-xs font-semibold ${
+          isLight
+            ? "bg-white border-slate-200 text-slate-700"
+            : "bg-slate-950/80 border-slate-800 text-slate-300"
+        }`}
+      >
+        <span>Theme:</span>
+        <button
+          onClick={() => setThemeMode(isLight ? "dark" : "light")}
+          className={`px-3 py-1 rounded-lg border transition shadow-sm ${
+            isLight
+              ? "bg-slate-900 text-white border-slate-800 hover:bg-slate-800"
+              : "bg-amber-400 text-slate-950 border-amber-500 font-bold hover:bg-amber-300"
+          }`}
+        >
+          {isLight ? "🌙 Switch to Dark Mode" : "☀️ Switch to Light Mode"}
+        </button>
+      </div>
+
       <div className="flex flex-col md:flex-row flex-1">
         {/* MOBILE RESPONSIVE TOP BAR */}
-        <header className="md:hidden bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 sticky top-0 z-50 flex items-center justify-between">
+        <header
+          className={`md:hidden backdrop-blur-md border-b px-4 py-3 sticky top-0 z-50 flex items-center justify-between ${
+            isLight
+              ? "bg-white/90 border-slate-200"
+              : "bg-slate-900/90 border-slate-800"
+          }`}
+        >
           <Link
             to="/"
-            className="flex items-center gap-2 font-bold text-indigo-400"
+            className={`flex items-center gap-2 font-bold ${isLight ? "text-indigo-600" : "text-indigo-400"}`}
           >
             <Activity className="w-5 h-5 animate-pulse" />
-            <span className="text-white tracking-tight">PremiumConvert</span>
+            <span
+              className={
+                isLight
+                  ? "text-slate-900 tracking-tight"
+                  : "text-white tracking-tight"
+              }
+            >
+              PremiumConvert
+            </span>
           </Link>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 border border-slate-700 rounded-xl bg-slate-800 text-slate-200"
+            className={`p-2 border rounded-xl ${
+              isLight
+                ? "bg-slate-100 border-slate-200 text-slate-800"
+                : "bg-slate-800 border-slate-700 text-slate-200"
+            }`}
           >
             {isMobileMenuOpen ? (
               <X className="w-5 h-5" />
@@ -269,6 +312,7 @@ export default function App() {
           setIsMobileMenuOpen={setIsMobileMenuOpen}
           apiStatus={apiStatus}
           onRefresh={syncRatesPipeline}
+          themeMode={themeMode}
         />
 
         {/* VIEW GRID LAYER PORT PANELS */}
@@ -289,17 +333,27 @@ export default function App() {
                   formattedResult={formattedResult}
                   apiStatus={apiStatus}
                   liveFinanceRates={liveFinanceRates}
+                  themeMode={themeMode}
                 />
               }
             />
-            <Route path="/about" element={<About />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<TermsOfService />} />
-            <Route path="/contact" element={<ContactSupport />} />
+            <Route path="/about" element={<About themeMode={themeMode} />} />
+            <Route
+              path="/privacy"
+              element={<PrivacyPolicy themeMode={themeMode} />}
+            />
+            <Route
+              path="/terms"
+              element={<TermsOfService themeMode={themeMode} />}
+            />
+            <Route
+              path="/contact"
+              element={<ContactSupport themeMode={themeMode} />}
+            />
           </Routes>
         </main>
       </div>
-      <Footer />
+      <Footer themeMode={themeMode} />
     </div>
   );
 }
