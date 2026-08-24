@@ -1,9 +1,17 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { Shield, Zap, Globe, Award, CheckCircle } from "lucide-react";
 
 export default function About() {
   return (
     <div className="space-y-8 max-w-4xl mx-auto py-4">
+      <Helmet>
+        <title>About Us - OmniConvert Premium</title>
+        <meta
+          name="description"
+          content="Learn about OmniConvert Premium, our mission to deliver high-precision unit and currency conversions with institutional-grade accuracy."
+        />
+      </Helmet>
       {/* Header Banner */}
       <div className="bg-gradient-to-br from-indigo-950 via-slate-900 to-violet-950 text-white p-8 rounded-3xl shadow-xl space-y-4 relative overflow-hidden border border-slate-800">
         <div className="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
