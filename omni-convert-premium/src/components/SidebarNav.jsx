@@ -28,7 +28,7 @@ export default function SidebarNav({
   return (
     <aside
       className={`
-      fixed inset-y-0 left-0 z-40 w-72 bg-gradient-to-b from-slate-900 via-slate-900 to-indigo-950 text-slate-100 border-r border-slate-800 p-5 flex flex-col space-y-2
+      fixed inset-y-0 left-0 z-40 w-72 bg-gradient-to-b from-slate-900 via-slate-900 to-indigo-950 text-slate-100 border-r border-slate-800 p-5 flex flex-col space-y-2 overflow-y-auto overscroll-contain
       transform transition-transform duration-200 ease-in-out md:translate-x-0 md:relative md:flex md:h-screen md:sticky md:top-0 shadow-xl
       ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
     `}
