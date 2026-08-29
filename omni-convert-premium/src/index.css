@@ -14,20 +14,20 @@
 /* Light palette applied across the existing utility-based interface. */
 .theme-light {
   background:
-    radial-gradient(circle at 85% 0%, rgb(224 231 255 / 0.85), transparent 32rem),
-    linear-gradient(145deg, #f8fafc, #eef2ff 58%, #f1f5f9) !important;
+    radial-gradient(circle at 85% 0%, rgb(199 210 254 / 0.48), transparent 32rem),
+    linear-gradient(145deg, #e9eef5, #e4e9f3 58%, #e7ecf2) !important;
 }
 
 .theme-light [class*="bg-slate-950"] {
-  background-color: rgb(248 250 252 / 0.96) !important;
+  background-color: rgb(232 237 244 / 0.97) !important;
 }
 
 .theme-light [class*="bg-slate-900"] {
-  background-color: rgb(255 255 255 / 0.94) !important;
+  background-color: rgb(244 246 249 / 0.94) !important;
 }
 
 .theme-light [class*="bg-slate-800"] {
-  background-color: rgb(241 245 249 / 0.96) !important;
+  background-color: rgb(225 231 239 / 0.96) !important;
 }
 
 .theme-light [class*="hover:bg-slate-800"]:hover,
@@ -36,17 +36,17 @@
 }
 
 .theme-light [class*="from-slate-900"] {
-  --tw-gradient-from: #ffffff var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-from: #f4f6f9 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(244 246 249 / 0) var(--tw-gradient-to-position) !important;
 }
 
 .theme-light [class*="via-slate-900"] {
   --tw-gradient-to: rgb(248 250 252 / 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), #f8fafc var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #edf1f6 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
 }
 
 .theme-light [class*="to-indigo-950"] {
-  --tw-gradient-to: #eef2ff var(--tw-gradient-to-position) !important;
+  --tw-gradient-to: #e3e7f4 var(--tw-gradient-to-position) !important;
 }
 
 .theme-light [class*="text-slate-100"],

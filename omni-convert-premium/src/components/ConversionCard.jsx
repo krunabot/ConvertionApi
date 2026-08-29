@@ -42,7 +42,7 @@ function UnitSelect({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
-        className={`${selectStyles} px-3 py-2 text-xs md:text-sm font-semibold border-l min-w-[160px] md:min-w-[190px] outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition rounded-r-xl`}
+        className={`${selectStyles} px-3 py-2 text-base xl:text-sm font-semibold border-l min-w-[160px] xl:min-w-[190px] outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition rounded-r-xl`}
       >
         {options.map((o) => (
           <option
@@ -79,7 +79,7 @@ function UnitSelect({
 
   return (
     <div
-      className="relative border-l border-slate-700 min-w-[160px] md:min-w-[190px] flex items-stretch"
+      className="relative border-l border-slate-700 min-w-[160px] xl:min-w-[190px] flex items-stretch"
       ref={containerRef}
     >
       <button
@@ -89,7 +89,7 @@ function UnitSelect({
           setIsOpen(!isOpen);
           setSearchTerm("");
         }}
-        className={`${btnStyles} w-full h-full px-3 py-2 text-xs md:text-sm font-semibold flex items-center justify-between gap-1.5 outline-none disabled:opacity-50 disabled:cursor-not-allowed transition rounded-r-xl`}
+        className={`${btnStyles} w-full h-full px-3 py-2 text-base xl:text-sm font-semibold flex items-center justify-between gap-1.5 outline-none disabled:opacity-50 disabled:cursor-not-allowed transition rounded-r-xl`}
       >
         <span className="truncate">{selectedLabel}</span>
         <ChevronDown
@@ -202,10 +202,10 @@ export default function ConversionCard({
           </p>
         </div>
       ) : (
-        <div className="flex flex-col md:flex-row gap-4 items-center max-w-4xl w-full">
+        <div className="flex flex-col xl:flex-row gap-4 items-center max-w-4xl w-full">
           {/* FROM ELEMENT INPUT SLOTS */}
           <div className="w-full space-y-1.5 min-w-0">
-            <label className="text-[10px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+            <label className="text-[13px] xl:text-[10px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
               Input Amount
             </label>
@@ -243,7 +243,7 @@ export default function ConversionCard({
 
           {/* TO ELEMENT OUTPUT SLOTS */}
           <div className="w-full space-y-1.5 min-w-0">
-            <label className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+            <label className="text-[13px] xl:text-[10px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               Converted Result
             </label>
