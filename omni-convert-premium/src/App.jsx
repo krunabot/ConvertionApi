@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
-import { Activity, Menu, X } from "lucide-react";
+import { Activity, Menu, Moon, Sun, X } from "lucide-react";
 import { STATIC_CATEGORIES, FINANCE_METADATA } from "./utils/converterTypes";
 import { fetchLiveFinancialRates } from "./services/apiService";
 import {
@@ -201,7 +201,9 @@ export default function App() {
   const [apiStatus, setApiStatus] = useState("loading");
   const [fromUnit, setFromUnit] = useState("in");
   const [toUnit, setToUnit] = useState("cm");
-  const [themeMode, setThemeMode] = useState("dark"); // "dark" or "light"
+  const [themeMode, setThemeMode] = useState(
+    () => localStorage.getItem("omni-theme") || "dark",
+  );
 
   const syncRatesPipeline = () => {
     setApiStatus("loading");
@@ -220,6 +222,11 @@ export default function App() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [location.pathname, activeCatId]);
+
+  useEffect(() => {
+    localStorage.setItem("omni-theme", themeMode);
+    document.documentElement.style.colorScheme = themeMode;
+  }, [themeMode]);
 
   useEffect(() => {
     setInputValue("");
@@ -268,27 +275,47 @@ export default function App() {
   return (
     <div
       className={`min-h-screen flex flex-col antialiased font-sans transition-colors duration-300 ${
+        isLight ? "theme-light" : "theme-dark"
+      } ${
         isLight ? "bg-slate-100 text-slate-900" : "bg-[#213793] text-slate-100"
       }`}
     >
       {/* THEME TOGGLE TOP HEADER BAR */}
       <div
-        className={`w-full px-4 py-2 border-b flex items-center justify-end gap-3 text-xs font-semibold ${
+        className={`w-full px-4 py-2.5 border-b flex items-center justify-end gap-3 text-xs font-semibold transition-colors duration-300 ${
           isLight
-            ? "bg-white border-slate-200 text-slate-700"
+            ? "bg-white/90 border-slate-200 text-slate-600 shadow-sm"
             : "bg-slate-950/80 border-slate-800 text-slate-300"
         }`}
       >
-        <span>Theme:</span>
+        <span className="hidden sm:inline">Appearance</span>
         <button
+          type="button"
           onClick={() => setThemeMode(isLight ? "dark" : "light")}
-          className={`px-3 py-1 rounded-lg border transition shadow-sm ${
+          aria-label={`Switch to ${isLight ? "dark" : "light"} mode`}
+          aria-pressed={isLight}
+          className={`relative flex h-8 w-28 items-center rounded-full border p-1 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
             isLight
-              ? "bg-slate-900 text-white border-slate-800 hover:bg-slate-800"
-              : "bg-amber-400 text-slate-950 border-amber-500 font-bold hover:bg-amber-300"
+              ? "bg-gradient-to-r from-sky-100 to-indigo-100 border-indigo-200 text-indigo-900 shadow-inner"
+              : "bg-slate-900 border-slate-700 text-slate-200 shadow-inner"
           }`}
         >
-          {isLight ? "🌙 Switch to Dark Mode" : "☀️ Switch to Light Mode"}
+          <span
+            className={`absolute flex h-6 w-6 items-center justify-center rounded-full shadow-md transition-transform duration-300 ${
+              isLight
+                ? "translate-x-[4.5rem] bg-white text-amber-500"
+                : "translate-x-0 bg-indigo-600 text-white"
+            }`}
+          >
+            {isLight ? (
+              <Sun className="h-3.5 w-3.5" />
+            ) : (
+              <Moon className="h-3.5 w-3.5" />
+            )}
+          </span>
+          <span className={`text-[10px] font-bold ${isLight ? "ml-2" : "ml-8"}`}>
+            {isLight ? "LIGHT" : "DARK"}
+          </span>
         </button>
       </div>
 
