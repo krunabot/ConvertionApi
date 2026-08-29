@@ -41,7 +41,7 @@ export default function TermsOfService() {
           </h2>
           <p className="text-slate-400 text-sm leading-relaxed">
             Conversion formulas follow recognised SI & NIST standards with
-            consistent 3 significant figure output formatting.
+            consistent 5 significant figure output formatting.
           </p>
         </div>
 

@@ -89,7 +89,7 @@ namespace OmniConvert.Backend.Services
                 rawResult = (value * fromFactor) / toFactor;
             }
 
-            // Round result to 3 significant figures unless it's an exact integer
+            // Round result to 5 significant figures unless it's an exact integer
             if (rawResult == 0.0) return 0.0;
             if (Math.Abs(rawResult - Math.Round(rawResult)) < 1e-9)
             {

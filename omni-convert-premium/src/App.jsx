@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { Activity, Menu, X } from "lucide-react";
 import { STATIC_CATEGORIES, FINANCE_METADATA } from "./utils/converterTypes";
 import { fetchLiveFinancialRates } from "./services/apiService";
@@ -14,6 +14,7 @@ import About from "./pages/About";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import ContactSupport from "./pages/ContactSupport";
+import Seo from "./components/Seo";
 
 function ConverterView({
   activeCatId,
@@ -32,9 +33,30 @@ function ConverterView({
     activeCatId === "finance"
       ? FINANCE_METADATA.icon
       : STATIC_CATEGORIES[activeCatId]?.icon;
+  const categoryTitle =
+    activeCatId === "finance"
+      ? FINANCE_METADATA.title
+      : STATIC_CATEGORIES[activeCatId]?.title;
+  const seoTitle = `${categoryTitle} Online | OmniConvert Premium`;
+  const seoDescription = `Use our free ${categoryTitle.toLowerCase()} with fast, accurate results, a complete equivalency table and no registration required.`;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "OmniConvert Premium",
+    url: "https://omni-convert.com/",
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any",
+    description: seoDescription,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
+  };
 
   return (
     <section className="space-y-6 min-w-0">
+      <Seo
+        title={seoTitle}
+        description={seoDescription}
+        structuredData={structuredData}
+      />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-800">
         <div className="space-y-1">
           <div className="text-xs sm:text-[11px] font-bold uppercase tracking-widest text-indigo-400">
@@ -165,11 +187,13 @@ function ConverterView({
           </div>
         </div>
       )}
+
     </section>
   );
 }
 
 export default function App() {
+  const location = useLocation();
   const [activeCatId, setActiveCatId] = useState("length");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -192,6 +216,10 @@ export default function App() {
   useEffect(() => {
     syncRatesPipeline();
   }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname, activeCatId]);
 
   useEffect(() => {
     setInputValue("");
