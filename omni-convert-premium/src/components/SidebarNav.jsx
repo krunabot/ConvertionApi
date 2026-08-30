@@ -82,18 +82,20 @@ export default function SidebarNav({
       </span>
       <button
         onClick={() => handleCategoryClick("finance")}
-        className={`w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-semibold transition-all group ${
+        className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-all group ${
           isFinanceActive
             ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-600/25 ring-1 ring-white/20"
             : "bg-slate-800/70 border border-slate-700/70 text-slate-200 shadow-sm hover:bg-slate-700/90 hover:border-slate-600 hover:text-white"
         }`}
       >
         <div
-          className={`p-1.5 rounded-lg transition-colors ${isFinanceActive ? "bg-white/20 text-white" : "bg-slate-800 text-emerald-400 group-hover:text-emerald-300"}`}
+          className={`shrink-0 p-1.5 rounded-lg transition-colors ${isFinanceActive ? "bg-white/20 text-white" : "bg-slate-800 text-emerald-400 group-hover:text-emerald-300"}`}
         >
           <FINANCE_METADATA.icon className="w-4 h-4" />
         </div>
-        <span>{FINANCE_METADATA.title}</span>
+        <span className="whitespace-nowrap text-[13px]">
+          {FINANCE_METADATA.title}
+        </span>
       </button>
 
       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 pt-4 mb-1.5 block">
