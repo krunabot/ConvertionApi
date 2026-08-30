@@ -11,6 +11,17 @@
   scrollbar-width: none;
 }
 
+/* Let a wide phone's sidebar move with the page instead of scrolling alone. */
+@media (orientation: landscape) and (max-height: 600px) {
+  .landscape-mobile-sidebar {
+    position: relative !important;
+    inset: auto !important;
+    height: auto !important;
+    overflow-y: visible !important;
+    transform: translateX(0) !important;
+  }
+}
+
 /* Light palette applied across the existing utility-based interface. */
 .theme-light {
   background:

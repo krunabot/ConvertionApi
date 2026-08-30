@@ -28,7 +28,7 @@ export default function SidebarNav({
   return (
     <aside
       className={`
-      fixed top-[105px] bottom-0 left-0 z-40 w-72 bg-gradient-to-b from-slate-900 via-slate-900 to-indigo-950 text-slate-100 border-r border-slate-800 p-5 flex flex-col space-y-2 overflow-y-auto overscroll-contain
+      landscape-mobile-sidebar fixed top-[105px] bottom-0 left-0 z-40 w-72 bg-gradient-to-b from-slate-900 via-slate-900 to-indigo-950 text-slate-100 border-r border-slate-800 p-5 flex flex-col space-y-2 overflow-y-auto overscroll-contain
       transform transition-transform duration-200 ease-in-out md:translate-x-0 md:relative md:flex md:h-screen md:sticky md:inset-y-0 shadow-xl
       ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
     `}
@@ -64,7 +64,7 @@ export default function SidebarNav({
             className={`w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-semibold transition-all group ${
               isActive
                 ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-600/25 ring-1 ring-white/20"
-                : "text-slate-300 hover:bg-slate-800/70 hover:text-white"
+                : "bg-slate-800/70 border border-slate-700/70 text-slate-200 shadow-sm hover:bg-slate-700/90 hover:border-slate-600 hover:text-white"
             }`}
           >
             <div
@@ -85,7 +85,7 @@ export default function SidebarNav({
         className={`w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-semibold transition-all group ${
           isFinanceActive
             ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-600/25 ring-1 ring-white/20"
-            : "text-slate-300 hover:bg-slate-800/70 hover:text-white"
+            : "bg-slate-800/70 border border-slate-700/70 text-slate-200 shadow-sm hover:bg-slate-700/90 hover:border-slate-600 hover:text-white"
         }`}
       >
         <div
@@ -105,7 +105,7 @@ export default function SidebarNav({
         className={`w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-semibold transition-all group ${
           location.pathname === "/about"
             ? "bg-gradient-to-r from-sky-600 to-indigo-600 text-white shadow-lg shadow-sky-600/25 ring-1 ring-white/20"
-            : "text-slate-300 hover:bg-slate-800/70 hover:text-white"
+            : "bg-slate-800/70 border border-slate-700/70 text-slate-200 shadow-sm hover:bg-slate-700/90 hover:border-slate-600 hover:text-white"
         }`}
       >
         <div

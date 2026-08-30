@@ -229,6 +229,55 @@ export default function App() {
   }, [themeMode]);
 
   useEffect(() => {
+    const portraitMobile = window.matchMedia(
+      "(max-width: 767px) and (orientation: portrait)",
+    );
+    let unlockPage = null;
+
+    const updateScrollLock = () => {
+      if (unlockPage) {
+        unlockPage();
+        unlockPage = null;
+      }
+
+      if (!isMobileMenuOpen || !portraitMobile.matches) return;
+
+      const scrollY = window.scrollY;
+      const previousBodyStyles = {
+        position: document.body.style.position,
+        top: document.body.style.top,
+        left: document.body.style.left,
+        right: document.body.style.right,
+        overflow: document.body.style.overflow,
+      };
+      const previousHtmlOverflow = document.documentElement.style.overflow;
+
+      document.documentElement.style.overflow = "hidden";
+      Object.assign(document.body.style, {
+        position: "fixed",
+        top: `-${scrollY}px`,
+        left: "0",
+        right: "0",
+        overflow: "hidden",
+      });
+
+      unlockPage = () => {
+        document.documentElement.style.overflow = previousHtmlOverflow;
+        Object.assign(document.body.style, previousBodyStyles);
+        window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
+      };
+    };
+
+    updateScrollLock();
+    portraitMobile.addEventListener("change", updateScrollLock);
+
+    return () => {
+      portraitMobile.removeEventListener("change", updateScrollLock);
+      unlockPage?.();
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
     setInputValue("");
     if (activeCatId === "length") {
       setFromUnit("in");
