@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
-const SITE_URL = "https://omni-convert.com";
+const SITE_URL = "https://convertionapi.pages.dev";
 const SITE_NAME = "OmniConvert Premium";
 
 export default function Seo({ title, description, path = "/", noIndex = false, structuredData }) {

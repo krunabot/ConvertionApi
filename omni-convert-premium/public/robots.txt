@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://omni-convert.com/sitemap.xml
+Sitemap: https://convertionapi.pages.dev/sitemap.xml

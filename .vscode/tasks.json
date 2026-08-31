@@ -18,10 +18,21 @@
       "options": {
         "cwd": "${workspaceFolder}/omni-convert-premium"
       },
-      "problemMatcher": [],
+      "problemMatcher": {
+        "owner": "vite",
+        "pattern": {
+          "regexp": "^(.*)$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*VITE.*",
+          "endsPattern": ".*Local:.*http://localhost:5173/.*"
+        }
+      },
       "isBackground": true,
-      "runOptions": {
-        "runOn": "folderOpen"
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
       }
     }
   ]

@@ -43,7 +43,7 @@ function ConverterView({
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "OmniConvert Premium",
-    url: "https://omni-convert.com/",
+    url: "https://convertionapi.pages.dev/",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Any",
     description: seoDescription,
