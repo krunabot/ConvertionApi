@@ -10,30 +10,6 @@
         "isDefault": true
       },
       "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "Run Vite Frontend",
-      "type": "shell",
-      "command": "npm run dev",
-      "options": {
-        "cwd": "${workspaceFolder}/omni-convert-premium"
-      },
-      "problemMatcher": {
-        "owner": "vite",
-        "pattern": {
-          "regexp": "^(.*)$"
-        },
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": ".*VITE.*",
-          "endsPattern": ".*Local:.*http://localhost:5173/.*"
-        }
-      },
-      "isBackground": true,
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated"
-      }
     }
   ]
 }
