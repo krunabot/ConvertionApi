@@ -2,7 +2,7 @@ import { Ruler, Scale, Box, Cpu, Thermometer, Coins } from "lucide-react";
 
 export const STATIC_CATEGORIES = {
   length: {
-    title: "Length & Distance",
+    title: "Length & Distance Test",
     icon: Ruler,
     isSpecial: false,
     units: {
