@@ -226,6 +226,9 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("omni-theme", themeMode);
     document.documentElement.style.colorScheme = themeMode;
+    const pageBackground = themeMode === "light" ? "#e9eef5" : "#213793";
+    document.documentElement.style.backgroundColor = pageBackground;
+    document.body.style.backgroundColor = pageBackground;
   }, [themeMode]);
 
   useEffect(() => {
