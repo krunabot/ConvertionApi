@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniConvert.Backend", "Omni
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "omni-convert-premium", "..\omni-convert-premium\omni-convert-premium.esproj", "{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "OmniConvert.Tests", "..\OmniConvert.Tests\OmniConvert.Tests.esproj", "{A9156199-92A8-45CD-8D07-36119B0B72F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FEEB716B-F3DA-4D71-A04F-8B793C2030D3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A9156199-92A8-45CD-8D07-36119B0B72F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9156199-92A8-45CD-8D07-36119B0B72F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9156199-92A8-45CD-8D07-36119B0B72F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9156199-92A8-45CD-8D07-36119B0B72F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
