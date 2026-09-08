@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { STATIC_CATEGORIES, FINANCE_METADATA } from "../utils/converterTypes";
 import Seo from "../components/Seo";
 import ConversionCard from "../components/ConversionCard";
@@ -115,6 +115,7 @@ export default function ConversionLandingPage({
   themeMode,
 }) {
   const params = useParams();
+  const navigate = useNavigate();
   const currentCategory = categoryParam || params.category || "length";
   const currentPair = params.pair || null;
 
@@ -157,6 +158,21 @@ export default function ConversionLandingPage({
     }
   }, [currentCategory, currentPair]);
 
+  // When fromUnit or toUnit changes, navigate to the specific pair URL if valid
+  const handleFromUnitChange = (newFrom) => {
+    setFromUnit(newFrom);
+    if (newFrom && toUnit && newFrom !== toUnit) {
+      navigate(`/${currentCategory}/${newFrom}-to-${toUnit}`);
+    }
+  };
+
+  const handleToUnitChange = (newTo) => {
+    setToUnit(newTo);
+    if (fromUnit && newTo && fromUnit !== newTo) {
+      navigate(`/${currentCategory}/${fromUnit}-to-${newTo}`);
+    }
+  };
+
   const unitOptions =
     currentCategory === "finance"
       ? Object.keys(liveFinanceRates || {}).map((k) => ({ id: k, label: k }))
@@ -185,7 +201,6 @@ export default function ConversionLandingPage({
       const toLabel = parts[1].toUpperCase();
       seoTitle = `Convert ${fromLabel} to ${toLabel} (${parts[0]} to ${parts[1]}) | PremiumConvert`;
       seoDescription = `Instant, accurate ${fromLabel} to ${toLabel} (${parts[0]} to ${parts[1]}) conversion calculator. Includes conversion formulas, worked examples, and reference tables.`;
-      h1Text = `${fromLabel} to ${toLabel} Converter`;
     }
   }
 
@@ -239,9 +254,9 @@ export default function ConversionLandingPage({
         inputValue={inputValue}
         setInputValue={setInputValue}
         fromUnit={fromUnit}
-        setFromUnit={setFromUnit}
+        setFromUnit={handleFromUnitChange}
         toUnit={toUnit}
-        setToUnit={setToUnit}
+        setToUnit={handleToUnitChange}
         unitOptions={unitOptions}
         formattedResult={formattedResult}
         disabled={currentCategory === "finance" && apiStatus === "error"}
@@ -297,6 +312,13 @@ export default function ConversionLandingPage({
                       setFromUnit(clickedUnitId);
                       if (toUnit === clickedUnitId) {
                         setToUnit(prevFromUnit);
+                        navigate(
+                          `/${currentCategory}/${clickedUnitId}-to-${prevFromUnit}`,
+                        );
+                      } else {
+                        navigate(
+                          `/${currentCategory}/${clickedUnitId}-to-${toUnit}`,
+                        );
                       }
                     }
                   }}
