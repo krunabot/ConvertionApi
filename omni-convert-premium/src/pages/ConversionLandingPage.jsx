@@ -130,9 +130,16 @@ export default function ConversionLandingPage({
   const [fromUnit, setFromUnit] = useState("");
   const [toUnit, setToUnit] = useState("");
 
+  const prevCategoryRef = React.useRef(currentCategory);
+
   // Initialize and update selected units whenever category or route pair changes
   useEffect(() => {
-    setInputValue("");
+    // Only clear input value when actually switching to a completely different category
+    if (prevCategoryRef.current !== currentCategory) {
+      setInputValue("");
+      prevCategoryRef.current = currentCategory;
+    }
+
     if (currentPair) {
       const pParts = currentPair.split("-to-");
       if (pParts.length === 2) {
