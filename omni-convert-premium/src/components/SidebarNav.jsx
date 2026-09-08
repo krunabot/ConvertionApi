@@ -14,16 +14,13 @@ export default function SidebarNav({
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isFinanceActive =
-    location.pathname === "/" && activeCatId === "finance";
-
   const handleCategoryClick = (id) => {
     setActiveCatId(id);
     setIsMobileMenuOpen(false);
-    if (location.pathname !== "/") {
-      navigate("/");
-    }
+    navigate(`/${id}`);
   };
+
+  const currentPathCategory = location.pathname.split("/")[1] || "length";
 
   return (
     <aside
@@ -56,7 +53,9 @@ export default function SidebarNav({
       </span>
       {Object.entries(STATIC_CATEGORIES).map(([id, data]) => {
         const Icon = data.icon;
-        const isActive = location.pathname === "/" && activeCatId === id;
+        const isActive =
+          currentPathCategory === id ||
+          (location.pathname === "/" && id === "length");
         return (
           <button
             key={id}
@@ -80,23 +79,28 @@ export default function SidebarNav({
       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 pt-4 mb-1.5 block">
         Market Feeds
       </span>
-      <button
-        onClick={() => handleCategoryClick("finance")}
-        className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-all group ${
-          isFinanceActive
-            ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-600/25 ring-1 ring-white/20"
-            : "bg-slate-800/70 border border-slate-700/70 text-slate-200 shadow-sm hover:bg-slate-700/90 hover:border-slate-600 hover:text-white"
-        }`}
-      >
-        <div
-          className={`shrink-0 p-1.5 rounded-lg transition-colors ${isFinanceActive ? "bg-white/20 text-white" : "bg-slate-800 text-emerald-400 group-hover:text-emerald-300"}`}
-        >
-          <FINANCE_METADATA.icon className="w-4 h-4" />
-        </div>
-        <span className="whitespace-nowrap text-[13px]">
-          {FINANCE_METADATA.title}
-        </span>
-      </button>
+      {(() => {
+        const isFinanceActive = currentPathCategory === "finance";
+        return (
+          <button
+            onClick={() => handleCategoryClick("finance")}
+            className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-all group ${
+              isFinanceActive
+                ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-600/25 ring-1 ring-white/20"
+                : "bg-slate-800/70 border border-slate-700/70 text-slate-200 shadow-sm hover:bg-slate-700/90 hover:border-slate-600 hover:text-white"
+            }`}
+          >
+            <div
+              className={`shrink-0 p-1.5 rounded-lg transition-colors ${isFinanceActive ? "bg-white/20 text-white" : "bg-slate-800 text-emerald-400 group-hover:text-emerald-300"}`}
+            >
+              <FINANCE_METADATA.icon className="w-4 h-4" />
+            </div>
+            <span className="whitespace-nowrap text-[13px]">
+              {FINANCE_METADATA.title}
+            </span>
+          </button>
+        );
+      })()}
 
       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 pt-4 mb-1.5 block">
         Information
@@ -130,14 +134,16 @@ export default function SidebarNav({
         </span>
         <button
           onClick={onRefresh}
-          disabled={!isFinanceActive || apiStatus === "loading"}
+          disabled={
+            currentPathCategory !== "finance" || apiStatus === "loading"
+          }
           className={`font-bold transition px-2 py-1 rounded-md ${
-            isFinanceActive && apiStatus !== "loading"
+            currentPathCategory === "finance" && apiStatus !== "loading"
               ? "text-indigo-400 hover:text-indigo-300 hover:bg-indigo-950/50 cursor-pointer"
               : "text-slate-600 cursor-not-allowed opacity-40"
           }`}
           title={
-            !isFinanceActive
+            currentPathCategory !== "finance"
               ? "Refresh is only active in the Finance category"
               : apiStatus === "loading"
                 ? "Refreshing rates..."

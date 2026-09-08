@@ -6,10 +6,10 @@ export default function About() {
   return (
     <div className="space-y-8 max-w-4xl mx-auto py-4">
       <Helmet>
-        <title>About Us - OmniConvert Premium</title>
+        <title>About Us - PremiumConvert</title>
         <meta
           name="description"
-          content="Learn about OmniConvert Premium, our mission to deliver high-precision unit and currency conversions with institutional-grade accuracy."
+          content="Learn about PremiumConvert, our mission to deliver high-precision unit and currency conversions with institutional-grade accuracy."
         />
       </Helmet>
       {/* Header Banner */}

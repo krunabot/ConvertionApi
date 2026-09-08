@@ -2,9 +2,15 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 
 const SITE_URL = "https://convertionapi.pages.dev";
-const SITE_NAME = "OmniConvert Premium";
+const SITE_NAME = "PremiumConvert";
 
-export default function Seo({ title, description, path = "/", noIndex = false, structuredData }) {
+export default function Seo({
+  title,
+  description,
+  path = "/",
+  noIndex = false,
+  structuredData,
+}) {
   const canonicalUrl = `${SITE_URL}${path === "/" ? "/" : path}`;
 
   return (
@@ -22,7 +28,9 @@ export default function Seo({ title, description, path = "/", noIndex = false, s
       <meta name="twitter:description" content={description} />
       {noIndex && <meta name="robots" content="noindex, follow" />}
       {structuredData && (
-        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
       )}
     </Helmet>
   );
