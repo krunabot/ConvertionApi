@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace OmniConvert.Backend.Services
@@ -16,14 +17,16 @@ namespace OmniConvert.Backend.Services
         private readonly HttpClient _httpClient;
         private readonly IMemoryCache _cache;
         private readonly ILogger<FinanceRateService> _logger;
+        private readonly string? _coinGeckoApiKey;
         private const string CacheKey = "LiveFinanceRatesCache";
         private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(10);
 
-        public FinanceRateService(HttpClient httpClient, IMemoryCache cache, ILogger<FinanceRateService> logger)
+        public FinanceRateService(HttpClient httpClient, IMemoryCache cache, ILogger<FinanceRateService> logger, IConfiguration configuration)
         {
             _httpClient = httpClient;
             _cache = cache;
             _logger = logger;
+            _coinGeckoApiKey = configuration["COINGECKO_API_KEY"]?.Trim();
             // Set a standard user agent header to comply with external API requirements
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("OmniConvertBackend/1.0");
         }
@@ -45,7 +48,16 @@ namespace OmniConvert.Backend.Services
                 var fiatItems = await _httpClient.GetFromJsonAsync<List<FrankfurterRateItem>>("https://api.frankfurter.dev/v2/rates?base=EUR");
                 
                 // 2. Fetch live crypto prices in GBP from CoinGecko API
-                var cryptoResponse = await _httpClient.GetFromJsonAsync<CoinGeckoResponse>("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=gbp");
+                using var cryptoRequest = new HttpRequestMessage(HttpMethod.Get,
+                    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=gbp");
+                if (!string.IsNullOrWhiteSpace(_coinGeckoApiKey))
+                {
+                    // Authenticate only CoinGecko requests; never send this key to the fiat provider.
+                    cryptoRequest.Headers.Add("x-cg-demo-api-key", _coinGeckoApiKey);
+                }
+                using var cryptoHttpResponse = await _httpClient.SendAsync(cryptoRequest);
+                cryptoHttpResponse.EnsureSuccessStatusCode();
+                var cryptoResponse = await cryptoHttpResponse.Content.ReadFromJsonAsync<CoinGeckoResponse>();
 
                 // Map Frankfurter fiat rate items into a lookup dictionary
                 var fiatDict = new Dictionary<string, double>(StringComparer.OrdinalIgnoreCase);

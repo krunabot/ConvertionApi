@@ -1,5 +1,5 @@
 export async function fetchLiveFinancialRates() {
-  const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:63336";
+  const backendUrl = import.meta.env.DEV ? "" : (import.meta.env.VITE_API_URL || "");
 
   const backendResponse = await fetch(`${backendUrl}/api/conversion/rates`);
   if (!backendResponse.ok) {
